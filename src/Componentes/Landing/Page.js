@@ -8,13 +8,12 @@ import Section from './Section'
 
 const Page = () => {
     return (
-        < >
-            <ImgBackgpund/>
-            <Header/>
-            <Section/>
-            <Footer/>
-            <ButtonWhatsApp/>
-
+        <>
+            <ImgBackgpund />
+            <Header />
+            <Section />
+            <Footer />
+            <ButtonWhatsApp />
         </>
     )
 }

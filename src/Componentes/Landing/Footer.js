@@ -6,9 +6,6 @@ import logoHome from '../images/logohome.png'
 
 const Footer = () => {
     return (
-
-
-
         <div className='footer-clasSty'>
             <div className="auto-container">
                 <div className="widgets-section">
@@ -16,15 +13,15 @@ const Footer = () => {
                         <div className="big-column col-lg-12 col-md-12 col-sm-12">
                             <div className="row clearfix">
                                 <div className="col-lg-4 col-md-4 col-sm-4">
-                                    <div className="logo">
+                                    <div className="logo-2">
                                         <img className='img-contextC' src={logoHome} alt="" />
                                         <div className="copyright_redit">
                                             Globalnet Usa Inc <span className='r-color'> ® </span>  2022 All Rights
-                                            Reserved. <br/>
+                                            Reserved. <br />
                                         </div>
                                         <div className="direcc__sty">
-                                            16650 PARTRIDGE PLACE RD. FORT MYERS, FL 33908,<br/>
-                                            Phone: +1 954-271-9003,<br/>
+                                            16650 PARTRIDGE PLACE RD. FORT MYERS, FL 33908,<br />
+                                            Phone: +1 954-271-9003,<br />
                                             email: sales@globalnet.us.com
                                         </div>
                                     </div>
@@ -58,10 +55,10 @@ const Footer = () => {
                                             </div>
                                         </div>
                                         <div class="form-group">
-												<button type="submit" class="theme-btn btn-style-four button__modi_">
-													<span class="txt">Enviar</span>
-												</button>
-											</div>
+                                            <button type="submit" class="theme-btn btn-style-four button__modi_">
+                                                <span class="txt">Enviar</span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
 

@@ -1,10 +1,20 @@
-import Page from "./Componentes/Landing/Page";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+ 
+} from "react-router-dom";
 
-
+import IndexRoutes from "./Routes/IndexRoutes";
 function App() {
   return (
     <>
-      <Page/>
+ 
+      <Router >
+        <IndexRoutes />
+      </Router>
+
     </>
   );
 }
