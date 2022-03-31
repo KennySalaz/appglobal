@@ -9,6 +9,7 @@ import { FaLocationArrow, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 
 import { Button, Col, ListGroup, Offcanvas, Row, Tab } from 'react-bootstrap'
 import Redes from './Redes'
+import { Link } from 'react-router-dom'
 
 const ButtonMenuResposive = ({ name, ...props }) => {
 
@@ -22,14 +23,16 @@ const ButtonMenuResposive = ({ name, ...props }) => {
             <div className='back-roude'>
                 <img onClick={handleShow} className='img_hambur' src={imgHambur} />
             </div>
-            <Offcanvas   backdropClassName='effect-canvas-Menu'  show={show} onHide={handleClose} {...props} style={{    width: '309px !important'  }} >
-             
+            <Offcanvas backdropClassName='effect-canvas-Menu' show={show} onHide={handleClose} {...props} style={{ width: '309px !important' }} >
+
 
                 <Offcanvas.Header className='bg-black-color-W' closeButton >
                     <Offcanvas.Title className='p-diings' >
                         <div className="logo" >
-                            <a href="index.html"><img className="img_menuAbout" src={logoGome}
-                                alt="" /></a>
+                            <Link to='/'>
+                            <img className="img_menuAbout" src={logoGome} alt="" />
+                            </Link>
+                         
                         </div>
                     </Offcanvas.Title>
                 </Offcanvas.Header>
@@ -49,6 +52,11 @@ const ButtonMenuResposive = ({ name, ...props }) => {
 
                                         NUESTROS VALORES
                                     </ListGroup.Item>
+                                    <ListGroup.Item action href="#link3">
+
+                                    <Link className='l-style' to="/signIn">Login</Link>
+                                    </ListGroup.Item>
+                                 
                                 </ListGroup>
                             </Col>
 

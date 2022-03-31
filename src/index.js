@@ -3,15 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import UseContextGlobal from './Context/UseContextGlobal';
-import reducer, { initialState } from './Context/Reducer';
+import { StateProvedor } from './Context/UseContextGlobal';
 
 ReactDOM.render(
   <React.StrictMode>
-    <UseContextGlobal initialState={initialState} reducer={reducer} >
+    <StateProvedor>
       <App />
-    </UseContextGlobal>
-
+    </StateProvedor>
   </React.StrictMode>,
   document.getElementById('root')
 );
