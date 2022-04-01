@@ -36,7 +36,7 @@ if (localStorage.getItem('idToken')) {
 const StateContext = createContext({
     user: {},
     signUp: () => {},
-    SignIn : (userData) => {},
+    signIn : (userData) => {},
 })
 
 
@@ -72,7 +72,7 @@ function StateProvedor(props) {
         if (localStorage.getItem('idToken')) {
             const clientsRef = doc(db, 'Clients', localStorage.getItem('idClient'))
             onSnapshot(clientsRef, (doc) => {
-                if (localStorage.getItem('idToken') === doc.data.idToken()) {
+                if (localStorage.getItem('idToken') === doc.data().idToken) {
                     const userdata = {
                         Nombre: doc.data().Nombre,
                         Apellido: doc.data().Apellido,
@@ -137,6 +137,7 @@ function StateProvedor(props) {
                 type: 'NULL_USER',
                 user: {},
             })
+
         }).catch(error => {
             console.log(`No se pudo cerrar la sesion`)
         })

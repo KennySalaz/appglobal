@@ -1,3 +1,6 @@
+
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Permanent+Marker&display=swap");
 @media only screen and (max-width: 1140px){
     .m-top-section{
         margin-top: 0px !important;
@@ -77,6 +80,7 @@ padding-top: 60px;
         background-image: url(../Componentes/images/img5.jpg);
         background-size: cover;
         background-repeat: no-repeat;
+       
     }
     .img-Respon-Background-register{
         background-image: url(../Componentes/images/imgOrigin.jpg);
@@ -261,6 +265,11 @@ padding-top: 60px;
     align-items: center;
     height: 100vh;
 }
+
+/* .img-Respon-Background{
+   margin-left: 0px !important;
+   margin-right: 0px !important;
+} */
 
 .img_hambur{
 	width: 30px;
@@ -1048,6 +1057,51 @@ margin-right: 28px;
     }
   }
 
+
+  .Sty-Div-class-RecuperaTE{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-Ctainer-Password{
+      display: flex;
+      justify-content: center;
+      background: #ffffff59;
+  }
+
+  .back-white-div{
+    padding: 63px;
+    background: white;
+    box-shadow: 2px 6px 7px 0px #00000061;
+  }
+
+  .p-rese-password{
+    font-size: small;
+    padding-bottom: 18px;
+  }
+
+  .img-recuprate-div{
+      background-image: url('../Componentes/images/img8.jpg');
+      background-size: cover;
+      margin-right: 0px !important;
+  }
+
+
+/*   ::-webkit-scrollbar {
+    background-color: black;
+    width: 0.4vw;
+  } */
+  
+/*   ::-webkit-scrollbar-thumb {
+    background: #ffc107;
+  }
+   */
+  .show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    right: 0 !important;
+  }
 
 
 

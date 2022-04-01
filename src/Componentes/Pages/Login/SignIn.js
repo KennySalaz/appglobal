@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logoIcon from '../../images/fvicon.png'
 /* import logoTop from '../images/logohome.png' */
 import { FcGoogle } from 'react-icons/fc';
@@ -12,6 +12,9 @@ import { StateContext } from '../../../Context/UseContextGlobal';
 
 
 const SignIn = () => {
+
+
+    const navigate =  useNavigate()
     const { signIn } = useContext(StateContext)
     const [errorMessae, setErrorMessae] = useState('')
     const [userClientsLocals, setUserClientsLocals] = useState(null)
@@ -19,7 +22,7 @@ const SignIn = () => {
 
     useEffect(() => {
         AOS.init({
-            offset: 100,
+          
             duration: 1000,
             easing: 'ease'
         });
@@ -33,7 +36,7 @@ const SignIn = () => {
             (async () => {
                 const userDB = await clientsFirestorage(userClientsLocals)
                 signIn(userDB)
-                console.log(`DB :`, userDB)
+                console.log(`DB :`, userDB.user)
             })()
         }
     }, [userClientsLocals])
@@ -44,7 +47,8 @@ const SignIn = () => {
 
     return (
         <>
-            <Row className='img-Respon-Background' style={{ height: '100vh' }} >
+            <Row className='img-Respon-Background' 
+            style={{ height: '100vh'}} >
                 <Col className='flex-Ctainer' sm={12} md={6} lg={6} >
                     <div className='Sty-Div-class' >
                         <div className='group-c-item' >
@@ -91,7 +95,10 @@ const SignIn = () => {
                                         if (res.idUser) {
                                             console.log(res.idUser)
                                             setUserClientsLocals(res)
+                                           
                                             resetForm()
+
+                                            navigate('/main')
                                         } else if (res === 'NotPassword') {
 
                                             setErrorMessae('Contrasena Icorrecta')
@@ -139,7 +146,7 @@ const SignIn = () => {
                                     <Form.Group className="mb-3" controlId="formBasicPassword" data-aos="fade-right" data-aos-duration="1400">
                                         <Form.Label className='l-abel-Sty'>Password</Form.Label>
                                         <Form.Control className='c-ontrol-stysS' name='password' onChange={handleChange} onBlur={handleBlur} type="password" placeholder="Password" value={values.password} />
-                                        {
+                                       {/*  {
                                             touched.password && errors.password && (
                                                 <div className='error-div' data-aos="zoom-in " data-aos-duration="0.400">
                                                     <div className='errors-Message-email'> {errors.password}  </div>
@@ -150,12 +157,12 @@ const SignIn = () => {
                                                 <div className='error-div' data-aos="zoom-in " data-aos-duration="0.400">
                                                     <div className='errors-Message-email'> {errorMessae}  </div>
                                                 </div>)
-                                        }
+                                        } */}
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox" data-aos="fade-right" data-aos-duration="1600">
                                         <div className='f-clex-g'>
                                             <Form.Check className='check-sty' type="checkbox" label="Check me out" />
-                                            <Link to='/' className='e-Link' >  Forget password?  </Link>
+                                            <Link to='/recuperatePassword' className='e-Link' >  Forget password?  </Link>
                                         </div>
                                     </Form.Group>
                                     <div className='div-button-sty' data-aos="fade-right">
