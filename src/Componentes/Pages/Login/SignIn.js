@@ -98,7 +98,7 @@ const SignIn = () => {
                                            
                                             resetForm()
 
-                                            navigate('/main')
+                                            navigate('/dashboardprueb')
                                         } else if (res === 'NotPassword') {
 
                                             setErrorMessae('Contrasena Icorrecta')

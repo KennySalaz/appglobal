@@ -169,12 +169,12 @@ const SignUp = () => {
 
                                         </div>
                                     </Form.Group>
-                                    <div className='div-button-sty' data-aos="fade-right">
+                                    <div className='div-button-sty' >
                                         <Button className='butt-style-cc' variant="primary" type="submit">
                                             Sign Up
                                         </Button>
                                     </div>
-                                    <div className='check-sty' data-aos="fade-right" > Already have an Account? <Link to='/signIn' className='e-Link'>  Sign Up </Link>  </div>
+                                    <div className='check-sty'  > Already have an Account? <Link to='/signIn' className='e-Link'>  Sign Up </Link>  </div>
                                 </Form>
                             )}
 

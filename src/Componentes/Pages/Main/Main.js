@@ -10,8 +10,8 @@ const Main = () => {
   return (
     <Div>
        
-     <Sidebar />
-     <Dashboard />
+   {/*   <Sidebar />
+     <Dashboard /> */}
     </Div>
   );
 }
