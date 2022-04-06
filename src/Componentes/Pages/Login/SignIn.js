@@ -40,13 +40,8 @@ const SignIn = () => {
             })()
         }
     }, [userClientsLocals])
-
-
-
-
-
     return (
-        <>
+        <Container fluid className='conIner-div' >
             <Row className='img-Respon-Background' 
             style={{ height: '100vh'}} >
                 <Col className='flex-Ctainer' sm={12} md={6} lg={6} >
@@ -146,7 +141,7 @@ const SignIn = () => {
                                     <Form.Group className="mb-3" controlId="formBasicPassword" data-aos="fade-right" data-aos-duration="1400">
                                         <Form.Label className='l-abel-Sty'>Password</Form.Label>
                                         <Form.Control className='c-ontrol-stysS' name='password' onChange={handleChange} onBlur={handleBlur} type="password" placeholder="Password" value={values.password} />
-                                       {/*  {
+                                        {
                                             touched.password && errors.password && (
                                                 <div className='error-div' data-aos="zoom-in " data-aos-duration="0.400">
                                                     <div className='errors-Message-email'> {errors.password}  </div>
@@ -157,7 +152,7 @@ const SignIn = () => {
                                                 <div className='error-div' data-aos="zoom-in " data-aos-duration="0.400">
                                                     <div className='errors-Message-email'> {errorMessae}  </div>
                                                 </div>)
-                                        } */}
+                                        }
                                     </Form.Group>
                                     <Form.Group className="mb-3" controlId="formBasicCheckbox" data-aos="fade-right" data-aos-duration="1600">
                                         <div className='f-clex-g'>
@@ -190,7 +185,7 @@ const SignIn = () => {
                     </div>
                 </Col>
             </Row>
-        </>
+        </Container>
 
     )
 }

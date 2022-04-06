@@ -1013,6 +1013,10 @@ margin-right: 28px;
 
 }
 
+.conIner-div{
+    overflow: hidden !important;
+}
+
 .effect-canvas-Menu{
  /* width: 300px !important; */
     animation-duration:.8s;

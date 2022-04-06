@@ -1,22 +1,34 @@
-import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { StateContext } from '../../../Context/UseContextGlobal'
 import '../../../Style/dashboard.css'
 
 
 const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
 
 
-
+    const { signUp } = useContext(StateContext)
+    const navigate = useNavigate()
 
     const [isOpenLink, setIsOpenLink] = useState(false)
+    const [isOpenLink2, setIsOpenLink2] = useState(false)
+    const [isOpenLink3, setIsOpenLink3] = useState(false)
+    const [isOpenLink4, setIsOpenLink4] = useState(false)
+    const [isOpenLink5, setIsOpenLink5] = useState(false)
+    const [isOpenLink6, setIsOpenLink6] = useState(false)
+
     const [isLink, setIsLink] = useState()
-
-
-
-
 
     const linkOpen = () => {
         setIsOpenLink(!isOpenLink)
+    }
+    const linkOpen2 = () => {
+        setIsOpenLink2(!isOpenLink2)
+    }
+
+    const exit = () => {
+        signUp()
+        navigate('/')
     }
 
     return (
@@ -26,26 +38,24 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
 
                 <ul className="sidebar-nav" id="sidebar-nav">
 
-                    <li className="nav-item">
-                        <Link to='/dashboardprueb' className="nav-link ">
+                  <li className="nav-item">
+                        <Link to='/' className="nav-link ">
                             <i className="bi bi-grid"></i>
-                            <span>Dashboard</span>
+                            <span>Home</span>
                         </Link>
                     </li>
-
+  {/* 
                     <li onClick={linkOpen} className="nav-item">
-                        <a  className={`${(isOpenLink  ? 'nav-link' : 'nav-link collapsed')}`}   data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                        <a className={`${(isOpenLink ? 'nav-link' : 'nav-link collapsed')}`} data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                             <i className="bi bi-menu-button-wide"></i><span>Productos</span><i className="bi bi-chevron-down ms-auto">
 
                             </i>
                         </a>
-                        <ul  className={`${(isOpenLink   ? 'nav-content ' : 'collapse'  )}`}  data-bs-parent="#sidebar-nav">
+                        <ul className={`${(isOpenLink ? 'nav-content ' : 'collapse')}`} data-bs-parent="#sidebar-nav">
                             <li>
                                 <NavLink
-
                                     to='/products'
-                                    className={({ isActive }) => [(isActive ? 'acLinkClasss' : ' ') ]}
-
+                                    className={({ isActive }) => [(isActive ? 'acLinkClasss' : ' ')]}
                                 >
                                     <i className="bi bi-circle"></i><span>Ver productos</span>
                                 </NavLink>
@@ -60,13 +70,13 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
                         </ul>
                     </li>
 
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <li onClick={linkOpen2} className="nav-item">
+                        <a className={`${(isOpenLink2 ? 'nav-link' : 'nav-link collapsed')}`} data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
                             <i className="bi bi-journal-text"></i><span>Forms</span><i className="bi bi-chevron-down ms-auto">
 
                             </i>
                         </a>
-                        <ul id="forms-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <ul id="forms-nav" className={`${(isOpenLink2 ? 'nav-content ' : 'collapse')}`} data-bs-parent="#sidebar-nav">
                             <li>
                                 <a href="forms-elements.html">
                                     <i className="bi bi-circle"></i><span>Form Elements</span>
@@ -156,21 +166,22 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
                         </ul>
                     </li>
 
-                    <li className="nav-heading">Pages</li>
+                    <li className="nav-heading">Pages</li> */}
+                      <li className="nav-item">
+                        <NavLink style={{textDecoration: 'none'}}  className={({ isActive }) => [(isActive ? 'nav-link2  collapsed' : ' nav-link collapsed ')]} to={'/products'}>
+                            <i className="bi bi-question-circle"></i>
+                            <span>Productos</span>
+                        </NavLink>
+                    </li>
 
                     <li className="nav-item">
-                        <Link className="nav-link collapsed" to={'/profile'}>
+                        <NavLink  style={{textDecoration: 'none'}}  className={({ isActive }) => [(isActive ? 'nav-link2  collapsed' : ' nav-link collapsed ')]}  to={'/profile'}>
                             <i className="bi bi-person"></i>
                             <span>Profile</span>
-                        </Link>
+                        </NavLink>
                     </li>
 
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" href="pages-faq.html">
-                            <i className="bi bi-question-circle"></i>
-                            <span>F.A.Q</span>
-                        </a>
-                    </li>
+                  
 
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="pages-contact.html">
@@ -186,11 +197,11 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
                         </a>
                     </li>
 
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" href="pages-login.html">
+                    <li onClick={exit} className="nav-item">
+                         <a className="nav-link collapsed">
                             <i className="bi bi-box-arrow-in-right"></i>
                             <span>Login</span>
-                        </a>
+                      </a> 
                     </li>
 
                     <li className="nav-item">

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import '../../Style/style.css'
 import logoGome from '../images/logohome.png'
 import 'aos/dist/aos.css'
@@ -7,6 +7,7 @@ import ButtonInfo from './ButtonInfo'
 import ButtonMenuResposive from './ButtonMenuResposive';
 import { Col, Row } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import { StateContext } from '../../Context/UseContextGlobal';
 
 
 const Header = () => {
@@ -14,7 +15,7 @@ const Header = () => {
     const divref = useRef()
     const [activeH, setActiveH] = useState(false)
     const [drawer, setDrawer] = useState(false)
-
+    const { user } = useContext(StateContext)
 
     const handleSroll = () => {
         const div = divref.current
@@ -32,16 +33,18 @@ const Header = () => {
         return () => {
             window.removeEventListener('scroll', handleSroll)
         }
-
+     
 
     }, [])
 
     useEffect(() => {
         AOS.init({
             offset: 200,
-            duration: 3000,
+            duration: 1000,
             easing: 'ease'
         });
+
+        
     })
 
 
@@ -79,12 +82,22 @@ const Header = () => {
                                     <li className="nav-item p-3">
                                         <a className="nav-link" href="#">NUESTROS VALORES</a>
                                     </li>
-                                    <li className="nav-item p-4">
-                                        
-                                        <Link className='l-style' to="/signIn">Login</Link>
 
-                                    </li>
+                                    {
+                                        localStorage.getItem('idToken') ? (
+                                            
+                                            <li className="nav-item p-4"><Link className='l-style' to="/dashboardprueb">Productos</Link></li>
 
+                                        ) : (
+
+                                            <li className="nav-item p-4"><Link className='l-style' to="/signIn">Login</Link></li>
+                                            
+                                           
+    
+                                        )
+                                    }
+
+                                  
                                 </ul>
 
                                 <div>
