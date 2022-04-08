@@ -1,0 +1,20 @@
+
+
+/* 
+$custom-colors: (
+    "custom-color": #900
+  );
+  
+  // Merge the maps
+  $theme-colors: map-merge($theme-colors, $custom-colors); */
+
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+
+ .nav-link.active {
+  
+  font-weight: bold !important;
+}

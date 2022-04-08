@@ -6,7 +6,7 @@ import AOS from 'aos';
 import ButtonInfo from './ButtonInfo'
 import ButtonMenuResposive from './ButtonMenuResposive';
 import { Col, Row } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { StateContext } from '../../Context/UseContextGlobal';
 
 
@@ -74,7 +74,11 @@ const Header = () => {
                             <div className="collapse navbar-collapse" id="navbarNav">
                                 <ul className="navbar-nav">
                                     <li className="nav-item p-3 ">
-                                        <a className="nav-link active" aria-current="page" href="#">HOME</a>
+                                        <NavLink to={'/'} className="nav-link active" 
+                                         style={isActive => ({
+                                            fontWeight: 600
+                                          })}
+                                        >HOME</NavLink>
                                     </li>
                                     <li className="nav-item p-3">
                                         <a className="nav-link" href="#">SOBRE NOSOTROS</a>

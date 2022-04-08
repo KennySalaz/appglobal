@@ -15,6 +15,20 @@ const ButtonInfo = ({ name, ...props }) => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    <style type="text/css">
+    {`
+    .btn-flat {
+      background-color: purple;
+      color: white;
+    }
+
+    .btn-xxl {
+      padding: 1rem 1.5rem;
+      font-size: 1.5rem;
+    }
+    `}
+  </style>
     return (
         <div>
 
@@ -22,7 +36,7 @@ const ButtonInfo = ({ name, ...props }) => {
                 <img onClick={handleShow} className='img_hambur' src={imgHambur} />
             </div>
             <Offcanvas backdropClassName='effect-canvas' show={show} onHide={handleClose} {...props} >
-
+            
                 <Offcanvas.Header className='bg-black-color' closeButton >
                     <Offcanvas.Title className='p-diings' >
                         <div className="logo" data-aos="fade-up">
@@ -66,6 +80,8 @@ const ButtonInfo = ({ name, ...props }) => {
                     </ul>
                 </Offcanvas.Body>
 
+              
+               
             </Offcanvas>
 
         </div>

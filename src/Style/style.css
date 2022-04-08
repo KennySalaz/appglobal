@@ -121,6 +121,12 @@ padding-top: 60px;
     font-size: 15px !important;
 }
 
+.offcanvas-end {
+   
+    width: 75% ;
+   
+}
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -131,6 +137,8 @@ padding-top: 60px;
       font-size: 26px;
     }
   }
+
+
 
 /* @media only screen and (max-width: 900px){
     .back-lapto{
@@ -680,11 +688,11 @@ margin-right: 28px;
     justify-content: center;
     align-items: center;
 }
-.form-g-f{
+/* .form-g-f{
 
 
 
-}
+} */
 
 .icon {
     position: relative;
@@ -880,6 +888,13 @@ margin-right: 28px;
 	background-image: linear-gradient(to left, #CF2D01 0%, #FD4A1C 100%);
 }
 
+
+.isActiveClass{
+    font-weight: 600;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+
 .button__modi_ {
     background: #00c0fc!important;
     padding: 9px 79px 6px !important;
@@ -1008,10 +1023,13 @@ margin-right: 28px;
  
  animation-duration:.8s;
  animation-name: slidein;
+ background-color: #00000087 !important;
 
 
 
 }
+
+
 
 .conIner-div{
     overflow: hidden !important;
@@ -1022,7 +1040,7 @@ margin-right: 28px;
     animation-duration:.8s;
     animation-name: slidein;
    
-   
+    background-color: #00000087 !important;
    
    }
 

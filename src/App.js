@@ -1,23 +1,11 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
- 
-} from "react-router-dom";
 
-import IndexRoutes from "./Routes/IndexRoutes";
-function App() {
+import { AppRouter } from "./Routes/AppRouter";
 
-  
 
+function App(props) {
   return (
     <>
- 
-      <Router >
-        <IndexRoutes />
-      </Router>
-
+      <AppRouter />
     </>
   );
 }
