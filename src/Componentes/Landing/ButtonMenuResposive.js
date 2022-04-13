@@ -53,8 +53,16 @@ const ButtonMenuResposive = ({ name, ...props }) => {
                                         NUESTROS VALORES
                                     </ListGroup.Item>
                                     <ListGroup.Item action href="#link3">
+                                        {
+                                        localStorage.getItem('idToken') ? (
+                                            <Link className='l-style' to="/signIn">Products</Link>
+                                        ) : (
+                                            <Link className='l-style' to="/signIn">Login</Link>
+                                        )
+                                        }
+                                   
 
-                                    <Link className='l-style' to="/signIn">Login</Link>
+                                   
                                     </ListGroup.Item>
                                  
                                 </ListGroup>

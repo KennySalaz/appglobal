@@ -30,12 +30,12 @@ const ButtonInfo = ({ name, ...props }) => {
     `}
   </style>
     return (
-        <div>
+        <div data-aos="fade-left">
 
             <div className='back-roude'>
                 <img onClick={handleShow} className='img_hambur' src={imgHambur} />
             </div>
-            <Offcanvas backdropClassName='effect-canvas' show={show} onHide={handleClose} {...props} >
+            <Offcanvas backdropClassName='effect-canvas' show={show} onHide={handleClose} {...props} data-aos="fade-left" >
             
                 <Offcanvas.Header className='bg-black-color' closeButton >
                     <Offcanvas.Title className='p-diings' >
@@ -56,7 +56,7 @@ const ButtonInfo = ({ name, ...props }) => {
                     </div>
                     <div className="contact-info" data-aos="fade-up">
                         <h2 className='g-text-edit'>Contact Info</h2>
-                        <ul className="list-s-one">
+                        <ul className="list-s-one" style={{padding : '0px'}}>
                             <li className='icon_l'><span className='p-i-ding'> <FaLocationArrow color='#00bce5' /> </span>Fort Myers Florida
                                 33908</li>
                             <li className='icon_l'><span className='p-i-ding'> <FaPhoneAlt color='#00bce5' /> </span>+1 954-271-9003</li>
@@ -65,7 +65,7 @@ const ButtonInfo = ({ name, ...props }) => {
                         </ul>
                     </div>
 
-                    <ul className="social-box" data-aos="fade-right" >
+                    <ul className="social-box" >
                         <li className="i-Radius" >
                             <a href="https://www.facebook.com/Globalnet-USA-Inc-107702985172134"
                             >   <AiFillFacebook color='black' size={18} /> </a></li>

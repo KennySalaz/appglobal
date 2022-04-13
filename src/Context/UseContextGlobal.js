@@ -70,8 +70,11 @@ function StateProvedor(props) {
     useEffect(() => {
 
         if (localStorage.getItem('idToken')) {
+
             const clientsRef = doc(db, 'Clients', localStorage.getItem('idClient'))
+
             onSnapshot(clientsRef, (doc) => {
+
                 if (localStorage.getItem('idToken') === doc.data().idToken) {
                     const userdata = {
                         Nombre: doc.data().Nombre,
@@ -79,7 +82,8 @@ function StateProvedor(props) {
                         Correo: doc.data().Correo,
                         Celular: doc.data().Celular,
                         FotoUrl: doc.data().FotoUrl,
-                        Rol: doc.data().Rol
+                        Rol: doc.data().Rol,
+                        Metodo: doc.data().Metodo
                     }
                     dispatch({
                         type: 'NEW_SESSION',
@@ -91,6 +95,7 @@ function StateProvedor(props) {
                     localStorage.setItem('Celular', doc.data().Celular)
                     localStorage.setItem('FotoUrl', doc.data().FotoUrl)
                     localStorage.setItem('Rol', doc.data().Rol)
+                    localStorage.setItem('Metodo', doc.data().Metodo)
 
                 } else {
                     console.log('no hay usuario')

@@ -57,12 +57,12 @@ const Header = () => {
                     <nav className="navbar navbar-expand-lg navbar-light">
                         <div className="container-fluid ">
                             <Row className='respon-Logo-W' >
-                                <Col>
+                                <Col className='log-respon-creative'>
                                     <a className="navbar-brand" href="#">
                                         <img className='logoHome' src={logoGome} />
                                     </a>
                                 </Col>
-                                <Col className='f-lex-D'> <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                <Col className='f-lex-D'> <button className="navbar-toggler" >
                                     {['end'].map((placement, idx) => (
                                         <ButtonMenuResposive key={idx} placement={placement} name={placement} />
                                     ))}
@@ -90,7 +90,7 @@ const Header = () => {
                                     {
                                         localStorage.getItem('idToken') ? (
                                             
-                                            <li className="nav-item p-4"><Link className='l-style' to="/dashboardprueb">Productos</Link></li>
+                                            <li className="nav-item p-4"><Link className='l-style' to="/dashBoardMain">Productos</Link></li>
 
                                         ) : (
 
@@ -137,7 +137,11 @@ const Header = () => {
                             <div className="collapse navbar-collapse" id="navbarNav">
                                 <ul className="navbar-nav">
                                     <li className="nav-item p-mp ">
-                                        <a className="nav-link active" aria-current="page" href="#">HOME</a>
+                                    <NavLink to={'/'} className="nav-link active" 
+                                         style={isActive => ({
+                                            fontWeight: 600
+                                          })}
+                                        >HOME</NavLink>
                                     </li>
                                     <li className="nav-item p-mp">
                                         <a className="nav-link" href="#">SOBRE NOSOTROS</a>
@@ -145,6 +149,19 @@ const Header = () => {
                                     <li className="nav-item p-mp">
                                         <a className="nav-link" href="#">NUESTROS VALORES</a>
                                     </li>
+                                    {
+                                        localStorage.getItem('idToken') ? (
+                                            
+                                            <li className="nav-item p-mp "><Link className='nav-link' style={{textTransform:'uppercase'}} to="/dashBoardMain">Productos</Link></li>
+
+                                        ) : (
+
+                                            <li className="nav-item p-mp "><Link className='nav-link' style={{textTransform:'uppercase'}} to="/signIn">Login</Link></li>
+                                            
+                                           
+    
+                                        )
+                                    }
 
                                 </ul>
                                 {['end'].map((placement, idx) => (
@@ -156,7 +173,7 @@ const Header = () => {
 
 
 
-                        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <button className="navbar-toggler" >
                             {['end'].map((placement, idx) => (
                                 <ButtonInfo key={idx} placement={placement} name={placement} />
                             ))}

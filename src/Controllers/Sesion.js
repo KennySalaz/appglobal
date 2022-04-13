@@ -11,8 +11,7 @@ const coleccion = 'Clients'
 export const registerClients = async (email, id) => {
     try {
         await setDoc(doc(db, coleccion, id), {
-            metodo: email,
-
+            Metodo: email,
         })
         console.log('se ha agregado')
     } catch (error) {
@@ -39,7 +38,6 @@ export const registerClientsAuth = (email, password) => {
             if (error.code === 'auth/email-already-in-use') {
                 return 'Repetido'
             }
-
         })
 
 }

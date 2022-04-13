@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { StateContext } from '../../../Context/UseContextGlobal'
 import '../../../Style/dashboard.css'
 import logoDash from '../../images/fvicon.png'
 import message1 from '../../images/messages-1.jpg'
@@ -9,15 +11,24 @@ import profile from '../../images/profile-img.jpg'
 
 
 const DashHeader = ({open}) => {
+
+    const { user , signUp} = useContext(StateContext)
+    
+    const navigate = useNavigate()
+    
+    const exitUser = () => {
+        signUp()
+        navigate('/')
+    }
     return (
         <>
             <header id="header" className="header fixed-top d-flex align-items-center">
 
                 <div className="d-flex align-items-center justify-content-between">
-                    <a href="#" className="logo d-flex align-items-center">
+                    <Link to={'/'} className="logo d-flex align-items-center" style={{ textDecoration: 'none' }}>
                         <img src={logoDash} />
                         <span className="d-none d-lg-block">Globalnet</span>
-                    </a>
+                    </Link>
                  
                     <i onClick={open} className="bi bi-list toggle-sidebar-btn"></i>
                 </div>
@@ -42,13 +53,13 @@ const DashHeader = ({open}) => {
                         <li className="nav-item dropdown pe-3">
 
                             <a className="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                                <img src={profile} className="rounded-circle" />
-                                <span className="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                                <img src={user?.FotoUrl} className="rounded-circle" />
+                                <span className="d-none d-md-block dropdown-toggle ps-2">{user?.Nombre}</span>
                             </a>
 
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                 <li className="dropdown-header">
-                                    <h6>Kevin Anderson</h6>
+                                    <h6>{user?.Nombre} </h6>
                                     <span>Web Designer</span>
                                 </li>
                                 <li>
@@ -56,36 +67,36 @@ const DashHeader = ({open}) => {
                                 </li>
 
                                 <li>
-                                    <a className="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                    <Link className="dropdown-item d-flex align-items-center"  to={'/Profile'} >
                                         <i className="bi bi-person"></i>
                                         <span>My Profile</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
 
                                 <li>
-                                    <a className="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                    <Link to={'/profile'} className="dropdown-item d-flex align-items-center" >
                                         <i className="bi bi-gear"></i>
                                         <span>Account Settings</span>
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
 
-                                <li>
+                               {/*  <li>
                                     <a className="dropdown-item d-flex align-items-center" href="pages-faq.html">
                                         <i className="bi bi-question-circle"></i>
                                         <span>Need Help?</span>
                                     </a>
-                                </li>
+                                </li> */}
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
 
-                                <li>
+                                <li onClick={exitUser}>
                                     <a className="dropdown-item d-flex align-items-center" href="#">
                                         <i className="bi bi-box-arrow-right"></i>
                                         <span>Sign Out</span>

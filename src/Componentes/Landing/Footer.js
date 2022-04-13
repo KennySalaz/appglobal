@@ -28,8 +28,8 @@ const Footer = () => {
 
                                 </div>
                                 <div className="c-Flex col-lg-5 col-md-4 col-sm-4">
-                                    <div className="default-form contact-form">
-                                        <div className="mb-3 row">
+                                    <div className="default-form contact-form s-f-respon-no-respon" >
+                                        <div className="mb-3--2  row">
                                             <div className="col-sm-10">
                                                 <input
                                                     className="form-control"
@@ -37,7 +37,7 @@ const Footer = () => {
                                                     placeholder='Nombre y apellido' />
                                             </div>
                                         </div>
-                                        <div className="mb-3 row">
+                                        <div className="mb-3--2 row">
                                             <div className="col-sm-10">
                                                 <input
                                                     type="email"
@@ -46,7 +46,7 @@ const Footer = () => {
                                                     placeholder='Email' />
                                             </div>
                                         </div>
-                                        <div className="mb-3 row">
+                                        <div className="mb-3--2 row">
                                             <div className="col-sm-10">
                                                 <input
                                                     className="form-control"
@@ -54,7 +54,7 @@ const Footer = () => {
                                                     placeholder='Requerimiento' />
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <div className="form-group bu-toon-SUT" >
                                             <button type="submit" class="theme-btn btn-style-four button__modi_">
                                                 <span class="txt">Enviar</span>
                                             </button>

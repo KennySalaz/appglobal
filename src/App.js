@@ -1,7 +1,6 @@
 
 import { AppRouter } from "./Routes/AppRouter";
 
-
 function App(props) {
   return (
     <>

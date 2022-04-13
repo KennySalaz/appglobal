@@ -1,16 +1,10 @@
-import { Navigate , useLocation} from 'react-router-dom';
+import React from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
+
+const PrivateRoute = () => {
 
 
-export const PrivateRoute = ({ children }) => {
-
-    let location = useLocation();
-
-    if (localStorage.getItem('idToken')) {
-        return children;
-      } else {
-      
-        return <Navigate to="/signIn" state={{ from: location }} replace />;
-      }
-
-    
+  return localStorage.getItem('idToken') ? <Outlet />  : <Navigate to={'/'}/>
 }
+
+export default PrivateRoute

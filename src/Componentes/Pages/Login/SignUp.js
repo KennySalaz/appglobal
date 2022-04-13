@@ -174,17 +174,17 @@ const SignUp = () => {
                                             Sign Up
                                         </Button>
                                     </div>
-                                    <div className='check-sty'  > Already have an Account? <Link to='/signIn' className='e-Link'>  Sign Up </Link>  </div>
+                                    <div className='check-sty'  > Already have an Account? <Link to='/signIn' className='e-Link'>  Login </Link>  </div>
                                 </Form>
                             )}
 
                         </Formik>
 
                         {/* </div> */}
-                        <div className='rghts-copy2' data-aos="fade-right" >  Globalnet Usa Inc ® 2022 All Rights Reserved. </div>
+                        <div className='rghts-copy2'>  Globalnet Usa Inc ® 2022 All Rights Reserved. </div>
                     </div>
                 </Col >
-                <Col sm={0} md={6} lg={6} className='back-singUp d-none d-sm-block' data-aos="fade-right" data-aos-duration="2000">
+                <Col  md={6} lg={6} className='back-singUp d-none d-sm-block' >
                     <div className='back-img-backG'>
                         <div className="text-center-p">
                             <div className='global-text-stylS'>  Globalnet Usa Inc </div>

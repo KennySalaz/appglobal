@@ -9,12 +9,14 @@ import 'aos/dist/aos.css'
 import { Formik } from 'formik';
 import { clientsFirestorage, signInUserClients } from '../../../Controllers/Sesion';
 import { StateContext } from '../../../Context/UseContextGlobal';
+import Header from '../../Landing/Header';
+import ButtonMenuResposive from '../../Landing/ButtonMenuResposive';
 
 
 const SignIn = () => {
 
 
-    const navigate =  useNavigate()
+    const navigate = useNavigate()
     const { signIn } = useContext(StateContext)
     const [errorMessae, setErrorMessae] = useState('')
     const [userClientsLocals, setUserClientsLocals] = useState(null)
@@ -22,7 +24,7 @@ const SignIn = () => {
 
     useEffect(() => {
         AOS.init({
-          
+
             duration: 1000,
             easing: 'ease'
         });
@@ -41,9 +43,12 @@ const SignIn = () => {
         }
     }, [userClientsLocals])
     return (
+
+
         <Container fluid className='conIner-div' >
-            <Row className='img-Respon-Background' 
-            style={{ height: '100vh'}} >
+
+            <Row className='img-Respon-Background'
+                style={{ height: '100vh' }} >
                 <Col className='flex-Ctainer' sm={12} md={6} lg={6} >
                     <div className='Sty-Div-class' >
                         <div className='group-c-item' >
@@ -90,10 +95,10 @@ const SignIn = () => {
                                         if (res.idUser) {
                                             console.log(res.idUser)
                                             setUserClientsLocals(res)
-                                           
+
                                             resetForm()
 
-                                            navigate('/dashboardprueb')
+                                            navigate('/dashBoardMain')
                                         } else if (res === 'NotPassword') {
 
                                             setErrorMessae('Contrasena Icorrecta')
@@ -174,7 +179,7 @@ const SignIn = () => {
                         </Formik>
 
                         {/* </div> */}
-                        <div className='rghts-copy' data-aos="fade-right">  Globalnet Usa Inc ® 2022 All Rights Reserved. </div>
+                        <div className='rghts-copy' >  Globalnet Usa Inc ® 2022 All Rights Reserved. </div>
                     </div>
                 </Col >
                 <Col md={6} lg={6} className='back-lapto d-none d-sm-block' data-aos="fade-left" data-aos-duration="2000" >

@@ -33,11 +33,15 @@
         padding-top: 100px;
     }
 
-  
-
-    
-.text-p{
+    .navbar-toggler{
+        border: none !important;
+    }
+    .text-p{
 padding-top: 60px;
+}
+
+.s-f-respon-no-respon{
+    width: 250px !important;
 }
 
 
@@ -69,6 +73,10 @@ padding-top: 60px;
 
     .button_cita{
         width: 100%;
+    }
+
+    .log-respon-creative{
+        padding: 44px;
     }
 
     .Sty-Div-class{
@@ -540,6 +548,10 @@ margin-left: 10px !important;
     font-weight: 700;
 }
 
+.offcanvas{
+z-index: 999999 !important;
+}
+
 .text_proposito {
     color: white;
     font-size: 20px;
@@ -823,7 +835,7 @@ margin-right: 28px;
 }
 
 .p-dingn{
-    padding: 35px !important;
+    padding: 20px !important;
     background-color: #272727;
 }
 
@@ -837,6 +849,8 @@ margin-right: 28px;
 
 .icon_l{
     color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .p-i-ding{
@@ -953,6 +967,9 @@ margin-right: 28px;
    transition-timing-function: ease;
 
 }
+.s-f-respon-no-respon{
+    width: 80%;
+}
 
 
 .e-fixed-na{
@@ -1008,6 +1025,12 @@ margin-right: 28px;
     margin-top: 70px;
 }
 
+.bu-toon-SUT{
+    display: flex;
+    justify-content: center;
+    
+}
+
 .i-Radius{
     width: 40px;
     height: 40px;
@@ -1024,9 +1047,17 @@ margin-right: 28px;
  animation-duration:.8s;
  animation-name: slidein;
  background-color: #00000087 !important;
+ z-index: 99999 !important;
 
 
 
+}
+
+.mb-3--2 {
+   
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem!important;
 }
 
 
