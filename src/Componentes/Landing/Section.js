@@ -8,6 +8,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css'
 import Redes from './Redes'
 import { BsCheckLg } from "react-icons/bs";
+import CarrouselImg from './CarrouselImg'
 
 const Section = () => {
 
@@ -48,7 +49,7 @@ const Section = () => {
                     </div>
 
                 </div>
-
+                <CarrouselImg/>
                 <div className="row clearfix">
                     <Redes />
                     <div className="image-column col-lg-7 col-md-12 col-sm-12">
@@ -75,6 +76,8 @@ const Section = () => {
                         </div>
                     </div>
                 </div>
+               
+
                 <div className="auto-container">
                     <div className="row clearfix">
                         <div className="r-pon-edit content-column col-lg-5 col-md-12 col-sm-12"  >
@@ -109,7 +112,7 @@ const Section = () => {
                         </div>
                     </div>
                 </div>
-
+            
                 <div class="p-auto-r auto-container">
                     <div class="row clearfix">
                         <div class="col-lg-12 col-md-12 col-sm-12" data-aos="zoom-in-right">

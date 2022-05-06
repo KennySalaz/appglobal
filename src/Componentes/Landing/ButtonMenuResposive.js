@@ -39,8 +39,26 @@ const ButtonMenuResposive = ({ name, ...props }) => {
                 <Offcanvas.Body className='p-dingn-menuR' >
                     <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
                         <Row>
+
                             <Col sm={12}>
-                                <ListGroup>
+                                <div className='ul_listeResponsive'>
+                                   
+                                    <Link className='edit-listRespond' to='#'> HOME </Link>
+                                    <hr/>
+                                    <Link className='edit-listRespond' to='#'> SOBRE NOSOTROS </Link>
+                                    <hr/>
+                                    <Link className='edit-listRespond' to='#'> NUESTROS VALORES </Link>
+                                    <hr/>
+                                  
+                                    {
+                                        localStorage.getItem('idToken') ? (
+                                            <Link className='edit-listRespond'  to="/signIn">PRODUCTOS</Link>
+                                        ) : (
+                                            <Link className='edit-listRespond'  to="/signIn">LOGIN</Link>
+                                        )
+                                        }
+                                </div>
+                               {/*  <ListGroup>
                                     <ListGroup.Item action href="#link1">
                                         HOME
                                     </ListGroup.Item>
@@ -65,7 +83,7 @@ const ButtonMenuResposive = ({ name, ...props }) => {
                                    
                                     </ListGroup.Item>
                                  
-                                </ListGroup>
+                                </ListGroup> */}
                             </Col>
 
                         </Row>

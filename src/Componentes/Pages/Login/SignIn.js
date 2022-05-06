@@ -26,7 +26,8 @@ const SignIn = () => {
         AOS.init({
 
             duration: 1000,
-            easing: 'ease'
+            easing: 'ease',
+            once:true
         });
     })
 

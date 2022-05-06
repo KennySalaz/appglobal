@@ -39,7 +39,8 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
         AOS.init({
            
             duration: 1000,
-            easing: 'ease'
+            easing: 'ease',
+            once:false
         });
 
         
@@ -53,17 +54,19 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
                 <ul className="sidebar-nav" id="sidebar-nav" data-aos="fade-right">
 
                     <li className="nav-item" data-aos="fade-right"   data-aos-duration="700" >
-                        <Link to='/' className="nav-link ">
+                        <Link to='/dashBoardMain' className="nav-link ">
                             <i className="bi bi-grid"></i>
                             <span>Home</span>
                         </Link>
                     </li>
 
-                    <li className="nav-item" data-aos="fade-right"   data-aos-duration="1000" >
-                        <a className="nav-link collapsed" href="pages-error-404.html">
+                    
+
+                    <li className="nav-item" data-aos="fade-right"   data-aos-duration="1300" >
+                        <NavLink style={{ textDecoration: 'none' }} className={({ isActive }) => [(isActive ? 'nav-link2  collapsed' : ' nav-link collapsed ')]} to={'/addproduct'}>
                             <i className="bi bi-dash-circle"></i>
                             <span>Add Productos</span>
-                        </a>
+                        </NavLink>
                     </li>
 
                     <li className="nav-item" data-aos="fade-right"   data-aos-duration="1300" >
@@ -79,6 +82,7 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
                             <span>Profile</span>
                         </NavLink>
                     </li>
+               
 
                     {/* 
                     <li onClick={linkOpen} className="nav-item">

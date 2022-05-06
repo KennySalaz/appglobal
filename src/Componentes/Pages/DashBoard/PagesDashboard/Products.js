@@ -1,151 +1,196 @@
-import React, { useState } from 'react'
+
+
+import React, { useEffect, useState } from 'react'
+import { Card, Button, Col, Row } from 'react-bootstrap'
+
 import DashFooter from '../DashFooter'
 import DashHeader from '../DashHeader'
 import DashSidebar from '../DashSidebar'
+import '../../../../Style/dashboard.css'
+import 'aos/dist/aos.css'
+import AOS from 'aos';
+
+
+import { Link, NavLink, useNavigate } from 'react-router-dom'
+
+
+
 
 function Products(props) {
 
 
     const [isOpenDasboard, setIsOpenDasboard] = useState(false)
-
+    const navigate = useNavigate()
 
     const open = () => {
         setIsOpenDasboard(!isOpenDasboard)
     }
 
+    const products = {
+        img: 'https://images-na.ssl-images-amazon.com/images/I/71zZiQGzc5L._AC._SR360,460.jpg',
+        img2: 'https://res.cloudinary.com/walmart-labs/image/upload/w_960,dpr_auto,f_auto,q_auto:best/mg/images/categorias/d-computo/f-computo-laptops/l-laps-2-en-1-touchscreen.jpg',
+        img3: 'https://www.altonivel.com.mx/wp-content/uploads/2020/05/amazon1.jpg',
+        img4: 'https://i.blogs.es/575d4f/android/840_560.jpg',
+        img5: 'https://sc04.alicdn.com/kf/Hcb6688aedc7d4b20a02335b4537cdf10W.jpg',
+        img6: 'https://www.moviles.com/fotos/apple-ipad-mini-2019-81057-g.jpg',
+        img7: 'https://http2.mlstatic.com/D_NQ_NP_652824-MLV47001459183_082021-W.jpg',
+        img8: 'https://www.corsair.com/medias/sys_master/images/images/hc7/h90/9054936465438/-CC-9011135-WW-Gallery-280X-RGB-BLK-01.png',
+    }
+
+    const statusProduct = () => {
+        navigate('/detailsProduct')
+    }
+
+    useEffect(() => {
+        AOS.init({
+            offset: 200,
+            duration: 1000,
+            easing: 'ease'
+        });
+    })
     return (
         <>
             <div className={`${(isOpenDasboard && 'toggle-sidebar')}`} >
                 <DashHeader open={open} />
                 <DashSidebar isOpenDasboard={isOpenDasboard} setIsOpenDasboard={setIsOpenDasboard} />
-               
-                <main id="main" className="main">
 
-                    <div className="pagetitle">
-                        <h1>Chart.js</h1>
-                        <nav>
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li className="breadcrumb-item">Charts</li>
-                                <li className="breadcrumb-item active">Chart.js</li>
-                            </ol>
-                        </nav>
-                    </div>
+                <main id="main" className="main" style={{ height: '100vh' }}>
+                    <h4> Productos </h4>
 
-                    <p>Chart.JS Examples. You can check the <a href="https://www.chartjs.org/docs/latest/samples/" target="_blank">official website</a> for more examples.</p>
+                    <Row>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="1000" >
+                                <div className='dFlex_100'>
 
-                    <section className="section">
-                        <div className="row">
-
-                            <div className="col-lg-6">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Line Chart</h5>
+                                    <img className='maxImgWidth' src={products.img} />
 
 
-                                       
-
-
-
-                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="col-lg-6">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Bar CHart</h5>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="2000" >
+                                <div className='dFlex_100'>
+
+                                    <img className='maxImgWidth' src={products.img2} />
 
 
-                                     
 
-
-
-                                    </div>
                                 </div>
-                            </div>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="3000" >
+                                <div className='dFlex_100'>
 
-                            <div className="col-lg-6">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Pie Chart</h5>
+                                    <img className='maxImgWidth' src={products.img3} />
 
 
-                                      
-
-
-                                    </div>
                                 </div>
-                            </div>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="1000" >
+                                <div className='dFlex_100'>
 
-                            <div className="col-lg-6">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Doughnut Chart</h5>
+                                    <img className='maxImgWidth' src={products.img4} />
 
 
-                                      
-
-
-                                    </div>
                                 </div>
-                            </div>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="2000" >
+                                <div className='dFlex_100'>
 
-                            <div className="col-lg-6">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Radar Chart</h5>
+                                    <img className='maxImgWidth' src={products.img5} />
 
 
-                                       
-
-                                    </div>
                                 </div>
-                            </div>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="3000" >
+                                <div className='dFlex_100'>
 
-                            <div className="col-lg-6">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Polar Area Chart</h5>
+                                    <img className='maxImgWidth' src={products.img6} />
 
 
-                                       
-
-                                    </div>
                                 </div>
-                            </div>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="4000" >
+                                <div className='dFlex_100'>
 
-                            <div className="col-lg-6">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Stacked Bar Chart</h5>
+                                    <img className='maxImgWidth' src={products.img7} />
 
 
-                                      
-
-
-                                    </div>
                                 </div>
-                            </div>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="4000" >
+                                <div className='dFlex_100'>
 
-                            <div className="col-lg-6">
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Bubble Chart</h5>
+                                    <img className='maxImgWidth' variant="top" src={products.img8} />
 
 
-                                       
-
-
-                                    </div>
                                 </div>
-                            </div>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card data-aos="fade-right" data-aos-duration="4000" >
+                                <div className='dFlex_100'>
 
-                        </div>
-                    </section>
+                                    <img className='maxImgWidth' variant="top" src={products.img} />
 
+                                </div>
+                                <Card.Footer className="text-muted">
+                                    <Card.Title>Card Title</Card.Title>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                </Card.Footer>
+                            </Card>
+                        </Col>
+
+                    </Row>
+
+                    <DashFooter />
                 </main>
-                <DashFooter />
+
             </div>
 
         </>

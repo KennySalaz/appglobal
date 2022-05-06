@@ -14,6 +14,8 @@ import Products from '../Componentes/Pages/DashBoard/PagesDashboard/Products'
 import Profile from '../Componentes/Pages/DashBoard/PagesDashboard/Profile'
 import Error404 from '../Componentes/Pages/Error 404/Error404'
 import RecuperatePassword from '../Componentes/Pages/Login/RecuperatePassword';
+import Addproducts from '../Componentes/Pages/DashBoard/PagesDashboard/Addproducts';
+import DetailsProduct from '../Componentes/Pages/DashBoard/PagesDashboard/DetailsProduct';
 
 export const AppRouter = () => {
 
@@ -31,6 +33,8 @@ export const AppRouter = () => {
                     <Route path='/dashBoardMain' element={<DashBoardMain />} />
                     <Route path='/products' element={<Products />} />
                     <Route path='/profile' element={<Profile />} />
+                    <Route path='/addproduct' element={<Addproducts />} />
+                    <Route path='/detailsProduct' element={<DetailsProduct />} />
                 </Route>
                 <Route path='*' element={<Error404 />} />
             </Routes>

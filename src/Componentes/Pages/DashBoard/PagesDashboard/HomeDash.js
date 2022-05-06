@@ -1,5 +1,10 @@
 import React from 'react'
 import '../../../../Style/dashboard.css'
+
+
+
+
+
 const HomeDash = () => {
 
 
@@ -7,7 +12,9 @@ const HomeDash = () => {
 
     return (
         <main id="main" className="main">
-            <div className="pagetitle">
+
+            <h1>Home </h1>
+           {/*  <div className="pagetitle">
                 <h1>Dashboard</h1>
                 <nav>
                     <ol className="breadcrumb">
@@ -494,7 +501,7 @@ const HomeDash = () => {
 
                 </div>
             </section>
-
+ */}
         </main>
     )
 }

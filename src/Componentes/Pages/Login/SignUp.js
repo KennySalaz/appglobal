@@ -21,7 +21,8 @@ const SignUp = () => {
         AOS.init({
             offset: 100,
             duration: 1000,
-            easing: 'ease'
+            easing: 'ease',
+            once:true
         });
     })
     const tab = '\u00A0';

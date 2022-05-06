@@ -18,7 +18,8 @@ const RecuperatePassword = () => {
         AOS.init({
             offset: 100,
             duration: 1000,
-            easing: 'ease'
+            easing: 'ease',
+            once:true
         });
     })
 
