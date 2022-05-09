@@ -204,8 +204,8 @@ function Addproducts(props) {
                                                 {
                                                     !imags[0] ? (
                                                         <div
-                                                          
-                                                        className='d-ico-text-flex'>
+
+                                                            className='d-ico-text-flex'>
                                                             <input className='input_type_file' type='file' onChange={changeInput} />
                                                             <div className='fle-fle-text_' >
 
@@ -224,10 +224,16 @@ function Addproducts(props) {
                                                         <>
 
                                                             <div className={`'fle-fle-text_img' ${imags[0] && 'col_muttation'}`}>
-                                                                <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[0].https} />
-                                                                <div style={{ display: 'contents' }}>
-                                                                    <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[0].index)} />
+                                                                <div className='zoo__'>
+
+                                                                    <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[0].https} />
+
+
+                                                                    <div style={{ display: 'contents' }}>
+                                                                        <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[0].index)} />
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
                                                         </>
 
@@ -257,15 +263,18 @@ function Addproducts(props) {
                                                     ) : (
                                                         <>
                                                             <div className={`'fle-fle-text_img' ${imags[1] && 'col_muttation'}`} >
-                                                                <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[1].https} />
-                                                                <div style={{ display: 'contents' }}>
+                                                                <div className='zoo__'>
+                                                                    <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[1].https} />
+                                                                    <div style={{ display: 'contents' }}>
 
 
-                                                                    <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[1].index)} />
+                                                                        <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[1].index)} />
 
 
 
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
 
 
@@ -300,11 +309,13 @@ function Addproducts(props) {
                                                     ) : (
                                                         <>
                                                             <div className={`'fle-fle-text_img' ${imags[2] && 'col_muttation'}`} >
-
-                                                                <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[2].https} />
-                                                                <div style={{ display: 'contents' }}>
-                                                                    <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[2].index)} />
+                                                                <div className='zoo__'>
+                                                                    <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[2].https} />
+                                                                    <div style={{ display: 'contents' }}>
+                                                                        <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[2].index)} />
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
 
 
@@ -344,10 +355,14 @@ function Addproducts(props) {
                                                     ) : (
                                                         <>
                                                             <div className={`'fle-fle-text_img' ${imags[3] && 'col_muttation'}`} >
-                                                                <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[3].https} />
-                                                                <div style={{ display: 'contents' }}>
-                                                                    <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[3].index)} />
+
+                                                                <div className='zoo__2'>
+                                                                    <img data-aos="zoom-in" className='id_shadow-2' style={{ width: '100%' }} src={imags[3].https} />
+                                                                    <div style={{ display: 'contents' }}>
+                                                                        <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[3].index)} />
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
 
 
@@ -381,10 +396,14 @@ function Addproducts(props) {
                                                     ) : (
                                                         <>
                                                             <div className={`'fle-fle-text_img' ${imags[4] && 'col_muttation'}`} >
-                                                                <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[4].https} />
-                                                                <div style={{ display: 'contents' }}>
-                                                                    <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[4].index)} />
+
+                                                                <div className='zoo__2'>
+                                                                    <img data-aos="zoom-in" className='id_shadow-2' style={{ width: '100%' }} src={imags[4].https} />
+                                                                    <div style={{ display: 'contents' }}>
+                                                                        <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[4].index)} />
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
 
 
@@ -418,10 +437,14 @@ function Addproducts(props) {
                                                     ) : (
                                                         <>
                                                             <div className={`'fle-fle-text_img' ${imags[5] && 'col_muttation'}`} >
-                                                                <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[5].https} />
-                                                                <div style={{ display: 'contents' }}>
-                                                                    <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[5].index)} />
+                                                                <div className='zoo__2'>
+
+                                                                    <img data-aos="zoom-in" className='id_shadow-2' style={{ width: '100%' }} src={imags[5].https} />
+                                                                    <div style={{ display: 'contents' }}>
+                                                                        <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[5].index)} />
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
 
 
@@ -455,10 +478,14 @@ function Addproducts(props) {
                                                     ) : (
                                                         <>
                                                             <div className={`'fle-fle-text_img' ${imags[6] && 'col_muttation'}`} >
-                                                                <img data-aos="zoom-in" className='id_shadow' style={{ width: '100%' }} src={imags[6].https} />
-                                                                <div style={{ display: 'contents' }}>
-                                                                    <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[6].index)} />
+
+                                                                <div className='zoo__2'>
+                                                                    <img data-aos="zoom-in" className='id_shadow-2' style={{ width: '100%' }} src={imags[6].https} />
+                                                                    <div style={{ display: 'contents' }}>
+                                                                        <AiFillDelete size={50} className='ico_delete-img' onClick={() => deleteImg(imags[6].index)} />
+                                                                    </div>
                                                                 </div>
+
                                                             </div>
 
 

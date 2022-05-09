@@ -15,7 +15,9 @@ import Profile from '../Componentes/Pages/DashBoard/PagesDashboard/Profile'
 import Error404 from '../Componentes/Pages/Error 404/Error404'
 import RecuperatePassword from '../Componentes/Pages/Login/RecuperatePassword';
 import Addproducts from '../Componentes/Pages/DashBoard/PagesDashboard/Addproducts';
-import DetailsProduct from '../Componentes/Pages/DashBoard/PagesDashboard/DetailsProduct';
+import UserDetailsProduct from '../Componentes/Pages/DashBoard/PagesDashboard/UserDetailsProduct';
+import DetailsProduct from '../Componentes/Landing/Productos/DetailsProduct';
+import AllProducts from '../Componentes/Landing/Productos/AllProducts';
 
 export const AppRouter = () => {
 
@@ -24,17 +26,21 @@ export const AppRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Page />} />
+                <Route path='/detailsProduct' element={<DetailsProduct />} />
+                <Route path='/allProducts' element={<AllProducts />} />
                 <Route element={<PublicRoute />} >
                     <Route path='/signIn' element={<SignIn />} />
                     <Route path='/signUp' element={<SignUp />} />
                     <Route path='/recuperatePassword' element={<RecuperatePassword />} />
+                    
+
                 </Route>
                 <Route element={<PrivateRoute />} >
                     <Route path='/dashBoardMain' element={<DashBoardMain />} />
                     <Route path='/products' element={<Products />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/addproduct' element={<Addproducts />} />
-                    <Route path='/detailsProduct' element={<DetailsProduct />} />
+                    <Route path='/UserDetailsProduct' element={<UserDetailsProduct />} />
                 </Route>
                 <Route path='*' element={<Error404 />} />
             </Routes>

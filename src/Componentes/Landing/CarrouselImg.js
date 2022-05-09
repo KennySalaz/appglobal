@@ -15,6 +15,7 @@ import m12 from '../images/12.jpg'
 import m13 from '../images/13.jpg'
 import m14 from '../images/14.jpg'
 import m15 from '../images/15.jpg'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 
@@ -24,6 +25,14 @@ import m15 from '../images/15.jpg'
 const CarrouselImg = () => {
 
 
+    const navigate = useNavigate()
+
+
+    const sendProduct = () => {
+       
+            navigate('/allProducts')
+       
+    }
 
 
     return (
@@ -55,152 +64,182 @@ const CarrouselImg = () => {
                     <div className="slick-track" id="track">
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m1} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m1} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m2} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m2} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m3} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                     
+                                            <img src={m3} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m4} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m4} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m5} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m5} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m6} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m6} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m7} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m7} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m8} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m8} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m9} alt="Image" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m9} alt="Image" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m10} alt="Image/" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img  src={m10} alt="Image/" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m11} alt="Image/" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m11} alt="Image/" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m12} alt="Image/" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m12} alt="Image/" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m13} alt="Image/" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m13} alt="Image/" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m14} alt="Image/" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m14} alt="Image/" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                         <div className="slick">
                             <div>
-                                <a href="/">
+                               
                                     <h4><small>Share Your Message</small>Watch</h4>
-                                    <picture>
-                                        <img src={m15} alt="Image/" />
+                                    <picture onClick={sendProduct}>
+                                       
+                                            <img src={m15} alt="Image/" />
+                                       
                                     </picture>
-                                </a>
+                              
                             </div>
                         </div>
                     </div>

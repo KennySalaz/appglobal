@@ -38,7 +38,7 @@ function Products(props) {
     }
 
     const statusProduct = () => {
-        navigate('/detailsProduct')
+        navigate('/UserDetailsProduct')
     }
 
     useEffect(() => {
@@ -69,7 +69,7 @@ function Products(props) {
 
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -84,7 +84,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -98,7 +98,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -112,7 +112,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -126,7 +126,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -140,7 +140,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -154,7 +154,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -168,7 +168,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -181,7 +181,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Ver Producto</Button>
+                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>

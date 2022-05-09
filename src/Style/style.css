@@ -1,6 +1,10 @@
 
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Permanent+Marker&display=swap");
+body{
+    background: #ededed;
+}
+
 @media only screen and (max-width: 1140px){
     .m-top-section{
         margin-top: 0px !important;
@@ -453,6 +457,16 @@ margin-left: 10px !important;
     display: grid;
 }
 
+.classPrice{
+    font-size: 36px;
+    margin-top: -5px;
+    padding: 10px;
+}
+
+.mBottonClass{
+    margin-bottom: 20px;
+}
+
 .flex-Ctainer{
     display: flex;
    
@@ -462,6 +476,29 @@ margin-left: 10px !important;
 
 .img-sTle{
     width: 50px;
+}
+
+
+
+.css-text-ofert{
+    text-decoration: line-through;
+    color: #a3a3a3;
+    font-size: 20px;
+    padding: 10px;
+}
+.c-gloalDisplay{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   
+}
+.card_edit{
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    padding: 10px;
 }
 
 .text-center-p{
@@ -1315,7 +1352,6 @@ margin-right: 28px;
     visibility: visible !important;
     right: 0 !important;
   }
-
 
 
 
