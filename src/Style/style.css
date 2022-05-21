@@ -333,6 +333,16 @@ padding-top: 60px;
    
 }
 
+.errorMesage{
+    font-size: 10px;
+    color: red;
+    font-weight: 600;
+}
+
+.backLotttie{
+    background: #0000003b;
+}
+
 .id_shadow{
    /*  box-shadow: 1px 1px 7px 0px #c7c7c7; */
     padding: 10px;

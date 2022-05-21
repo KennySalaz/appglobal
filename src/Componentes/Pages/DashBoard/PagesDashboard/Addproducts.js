@@ -3,12 +3,19 @@ import DashFooter from '../DashFooter'
 import DashHeader from '../DashHeader'
 import DashSidebar from '../DashSidebar'
 import { Form, Button, Col, Row, InputGroup, FormControl } from 'react-bootstrap'
-import { Router } from 'react-router-dom'
+import { Router, Link, useNavigate } from 'react-router-dom'
 import { AiFillDelete } from "react-icons/ai";
 import '../../../../Style/dashboard.css'
 import { CloseButton } from 'react-bootstrap'
 import 'aos/dist/aos.css'
 import AOS from 'aos';
+import { getFirestore } from 'firebase/firestore'
+import firebaseApp from '../../../../Utils/firebase'
+import { getAuth } from 'firebase/auth'
+import { addProductsDb, uploadimgStorage } from '../../../../Controllers/addProducts'
+import ModalLottie from '../../../Modals/ModalLottie'
+import ToastN from '../../../Modals/Toast/ToastN'
+
 let imagenes = {
     img1: 'https://www.hisense.es/wp-content/uploads/2019/06/H30-ICE-BLUE-2.jpg',
     img2: 'https://www.notebookcheck.org/fileadmin/_processed_/c/6/csm_4_zu_3_Teaser_Nokia_2.3_bdcb81c668.jpg',
@@ -19,14 +26,23 @@ let imagenes = {
 }
 
 
-function Addproducts(props) {
+let placeHolderDescriptons = `${'Pantalla: 6.9", 1440 x 3200 pixels  Procesador: Snapdragon 865 2.84GHz / Exynos 990 2.73GHz   RAM: 12GB/16GB Almacenamiento: 128/256/512GB Expansión: microSD Cámara: Cuádruple, 108MP+48MP +12MP+TOF Batería: 5000 mAh'}`
 
+const db = getFirestore(firebaseApp)
+const auth = getAuth(firebaseApp)
+
+
+function Addproducts(props) {
+    const navigate = useNavigate()
     const [isOpenDasboard, setIsOpenDasboard] = useState(false)
     const open = () => {
         setIsOpenDasboard(!isOpenDasboard)
     }
 
     const [imags, setImags] = useState([])
+    const [sendNameImg , setSendNameImg] = useState([])
+
+    const [loding, setLoding] = useState(null)
 
     const [formValue, setFormValue] = useState({
         name: '',
@@ -35,55 +51,52 @@ function Addproducts(props) {
         descriptions: '',
         price: ''
     })
+    const [errorCategpry, setErrorCategpry] = useState(false)
+    const [errorBrand, setErrorBrand] = useState(false)
+    const [errorName, setErrorName] = useState(false)
+    const [errorDescription, setErrorDescription] = useState(false)
+    const [errorPrice, setErrorPrice] = useState(false)
+    const [errorImg, setErrorImg] = useState(false)
+    const [errorImg2, setErrorImg2] = useState(false)
 
 
 
 
     const changeInput = (e) => {
+      
 
 
+         let indexImg;
+ 
+        
+         if (imags.length > 0) {
+             indexImg = imags[imags.length - 1].index + 1;
+         } else {
+             indexImg = 0;
+         }
+ 
+         let newImgsToState = readmultifiles(e, indexImg);
+         let newImgsState = [...imags, ...newImgsToState];
+ 
+         setImags(newImgsState);
 
 
-        //esto es el indice que se le dará a cada imagen, a partir del indice de la ultima foto
-        let indexImg;
-
-        //aquí evaluamos si ya hay imagenes antes de este input, para saber en dónde debe empezar el index del proximo array
-        if (imags.length > 0) {
-            indexImg = imags[imags.length - 1].index + 1;
-        } else {
-            indexImg = 0;
-        }
-
-        let newImgsToState = readmultifiles(e, indexImg);
-        let newImgsState = [...imags, ...newImgsToState];
-
-        setImags(newImgsState);
-
-        console.log(newImgsState);
     };
 
     function readmultifiles(e, indexInicial) {
         const files = e.currentTarget.files;
-
-        //el array con las imagenes nuevas
         const arrayImages = [];
 
         Object.keys(files).forEach((i) => {
             const file = files[i];
 
-            let url = URL.createObjectURL(file);
+        /*     let url = URL.createObjectURL(file); */
 
             //console.log(file);
-            arrayImages.push({
-                index: indexInicial,
-                https: url
-            });
+            arrayImages.push({index: indexInicial, name : file });
 
             indexInicial++;
-
         });
-
-        //despues de haber concluido el ciclo retornamos las nuevas imagenes
         return arrayImages;
     }
 
@@ -95,7 +108,7 @@ function Addproducts(props) {
         const newImgs = imags.filter(function (element) {
             return element.index !== index;
         });
-        console.log(newImgs);
+
         setImags(newImgs);
     }
 
@@ -104,26 +117,68 @@ function Addproducts(props) {
     const validateImg = () => {
         let isValid = true
         if (imags.length === 0) {
-            console.log(`Debes ingresar las imagenes de tu producto`)
+           
+            setErrorImg(true)
 
             isValid = false
         } else if (imags.length < 3) {
-            console.log(`Debes cargar mas de 3 imagenes`)
+            
+            setErrorImg2(true)
             isValid = false
         }
 
+        if (formValue.name === '') {
+            setErrorName(true)
+            isValid = false
+        }
+        if (formValue.category === '' || formValue.category === null) {
+            setErrorCategpry(true)
 
+            isValid = false
+        }
+        if (formValue.brand === '' || formValue.brand === null) {
+            setErrorBrand(true)
+
+            isValid = false
+        }
+        if (formValue.descriptions === '') {
+            setErrorDescription(true)
+            isValid = false
+        }
+        if (formValue.price === '') {
+            setErrorPrice(true)
+            isValid = false
+        }
 
         return isValid
     }
 
 
     const sendData = () => {
-        if (!validateImg()) { return }
 
-        console.log(formValue)
+        setErrorCategpry('')
+        setErrorBrand('')
+        setErrorName('')
+        setErrorPrice('')
+        setErrorDescription('')
+        uploadimgStorage(imags)
+        /*   if (!validateImg()) { return } */
+        /*    setLoding(true) */
+        /*  addProductsDb(formValue) */
 
+        /* setTimeout(() => {
 
+            setLoding(false)
+
+            setFormValue({
+                name: '',
+                category: '',
+                brand: '',
+                descriptions: '',
+                price: ''
+            })
+            navigate('/products')
+        }, 3000); */
     }
 
     useEffect(() => {
@@ -135,8 +190,35 @@ function Addproducts(props) {
     })
 
     useEffect(() => {
-        console.log(formValue)
-    }, [formValue])
+        if (formValue.category !== '') {
+            setErrorCategpry(false)
+        }
+        if (formValue.category === 'Select') {
+            setErrorCategpry(true)
+        }
+        if (formValue.brand !== '') {
+            setErrorBrand(false)
+        }
+        if (formValue.brand === 'Select') {
+            setErrorBrand(true)
+        }
+        if (formValue.name !== '') {
+            setErrorName(false)
+        }
+        if (formValue.descriptions !== '') {
+            setErrorDescription(false)
+        }
+        if (formValue.price !== '') {
+            setErrorPrice(false)
+        }
+
+
+    }, [formValue.category, formValue.brand, formValue.price, formValue.descriptions, formValue.name])
+
+    useEffect(() => {
+        console.log( 'aquiiii' ,  imags)
+    }, [imags])
+
 
     return (
         <>
@@ -149,19 +231,25 @@ function Addproducts(props) {
                         <Col lg={5} >
                             <div>
                                 <Form>
-                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Group className="mb-2" controlId="formBasicEmail">
                                         <Form.Label>Name Product</Form.Label>
-                                        <Form.Control onChange={e => setFormValue({ ...formValue, name: e.target.value })} type="email" placeholder="example: Samsung s20 ultra.... " />
+                                        <Form.Control onChange={e => setFormValue({ ...formValue, name: e.target.value })} type="text" value={formValue.name} placeholder="Samsung Galaxy S20 Ultra...." />
                                         <Form.Text className="text-muted">
                                             No exceda los 20 caracteres al ingresar el nombre del producto
                                         </Form.Text>
+                                        {
+                                            errorName === true && (
+                                                <span data-aos="zoom-in" className='errorMesage'> Debes Ingresar un Titulo </span>
+                                            )
+                                        }
                                     </Form.Group>
 
                                     <Row>
                                         <Col>
-                                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Group className="mb-2" controlId="formBasicPassword">
                                                 <Form.Label>Category</Form.Label>
-                                                <Form.Select size="sm" onChange={e => setFormValue({ ...formValue, category: e.target.value })} >
+                                                <Form.Select size="sm" value={formValue.category} onChange={e => setFormValue({ ...formValue, category: e.target.value })} >
+                                                    <option>Select</option>
                                                     <option>Smartphone</option>
                                                     <option>Tablet</option>
                                                     <option>Laptos</option>
@@ -169,17 +257,31 @@ function Addproducts(props) {
 
                                                 </Form.Select>
                                             </Form.Group>
+
+                                            {
+                                                errorCategpry === true && (
+                                                    <span data-aos="zoom-in" className='errorMesage'> Debes Ingresar una categoria </span>
+                                                )
+                                            }
+
                                         </Col>
                                         <Col>
-                                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                            <Form.Group className="mb-2" controlId="formBasicPassword">
                                                 <Form.Label>Brand</Form.Label>
-                                                <Form.Select size="sm" onChange={e => setFormValue({ ...formValue, brand: e.target.value })} >
+                                                <Form.Select size="sm" value={formValue.brand} onChange={e => setFormValue({ ...formValue, brand: e.target.value })} >
+                                                    <option>Select</option>
                                                     <option>Samsung</option>
                                                     <option>Apple</option>
                                                     <option>Xiomi</option>
                                                 </Form.Select>
                                             </Form.Group>
 
+
+                                            {
+                                                errorBrand === true && (
+                                                    <span data-aos="zoom-in" className='errorMesage'> Debes Ingresar una Marca </span>
+                                                )
+                                            }
                                         </Col>
 
                                     </Row>
@@ -187,8 +289,24 @@ function Addproducts(props) {
 
                                     <Form.Group >
                                         <Form.Label>Descriptions</Form.Label>
-                                        <FormControl onChange={e => setFormValue({ ...formValue, descriptions: e.target.value })} style={{ height: '200px' }} as="textarea" aria-label="With textarea" />
+                                        <FormControl
+                                            value={formValue.descriptions}
+                                            onChange={e => setFormValue({ ...formValue, descriptions: e.target.value })}
+                                            style={{ height: '150px' }}
+                                            as="textarea"
+                                            aria-label="With textarea"
+                                            placeholder={placeHolderDescriptons}
+
+
+
+                                        />
+                                        {
+                                            errorDescription === true && (
+                                                <span data-aos="zoom-in" className='errorMesage'> Describe tu producto </span>
+                                            )
+                                        }
                                     </Form.Group>
+
                                 </Form>
                             </div>
 
@@ -205,19 +323,42 @@ function Addproducts(props) {
                                                     !imags[0] ? (
                                                         <div
 
-                                                            className='d-ico-text-flex'>
+                                                            className={`${errorImg ? 'd-ico-text-flex_errorImg ' : 'd-ico-text-flex'}  `}>
                                                             <input className='input_type_file' type='file' onChange={changeInput} />
-                                                            <div className='fle-fle-text_' >
 
-                                                                <div className='ico-fle-fle'>
 
-                                                                    <i style={{ color: '#686868', fontSize: '50px' }} class="bi bi-image-fill"></i>
-                                                                </div>
-                                                                <div className='ico-fle-fle'>
-                                                                    <span className='s-text__'> Drop your images here, <br /> or select   <span className='s-add__'> click to browse </span>  </span>
+                                                            {
+                                                                errorImg ? (
+                                                                    <>
+                                                                        <div className='fle-fle-text_' >
 
-                                                                </div>
-                                                            </div>
+                                                                            <div className='ico-fle-fle' >
+
+                                                                                <i style={{ color: 'red', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                            </div>
+                                                                            <div className='ico-fle-fle'>
+                                                                                <span className='s-text__' style={{ color: 'red' }}> Ingrese Una Imagen  </span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <div className='fle-fle-text_' >
+
+                                                                            <div className='ico-fle-fle'>
+
+                                                                                <i style={{ color: '#686868', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                            </div>
+                                                                            <div className='ico-fle-fle'>
+                                                                                <span className='s-text__'> Drop your images here, <br /> or select   <span className='s-add__'> click to browse </span>  </span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                )
+                                                            }
+
                                                         </div>
 
                                                     ) : (
@@ -245,19 +386,40 @@ function Addproducts(props) {
                                             <Col lg={4}>
                                                 {
                                                     !imags[1] ? (
-                                                        <div className='d-ico-text-flex'>
+                                                        <div className={`${errorImg2 ? 'd-ico-text-flex_errorImg ' : 'd-ico-text-flex'}  `}>
                                                             <input className='input_type_file' type='file' onChange={changeInput} />
-                                                            <div className='fle-fle-text_' >
+                                                            {
+                                                                errorImg2 ? (
+                                                                    <>
+                                                                        <div className='fle-fle-text_' >
 
-                                                                <div className='ico-fle-fle'>
+                                                                            <div className='ico-fle-fle' >
 
-                                                                    <i style={{ color: '#686868', fontSize: '50px' }} class="bi bi-image-fill"></i>
-                                                                </div>
-                                                                <div className='ico-fle-fle'>
-                                                                    <span className='s-text__'> Drop your images here, <br /> or select   <span className='s-add__'> click to browse </span>  </span>
+                                                                                <i style={{ color: 'red', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                            </div>
+                                                                            <div className='ico-fle-fle'>
+                                                                                <span className='s-text__' style={{ color: 'red' }}> Minimo de imagenes 3  </span>
 
-                                                                </div>
-                                                            </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <div className='fle-fle-text_' >
+
+                                                                            <div className='ico-fle-fle'>
+
+                                                                                <i style={{ color: '#686868', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                            </div>
+                                                                            <div className='ico-fle-fle'>
+                                                                                <span className='s-text__'> Drop your images here, <br /> or select   <span className='s-add__'> click to browse </span>  </span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                )
+                                                            }
+
                                                         </div>
 
                                                     ) : (
@@ -291,19 +453,42 @@ function Addproducts(props) {
 
                                                 {
                                                     !imags[2] ? (
-                                                        <div className='d-ico-text-flex'>
+
+                                                        <div className={`${errorImg2 ? 'd-ico-text-flex_errorImg ' : 'd-ico-text-flex'}  `}>
                                                             <input className='input_type_file' type='file' onChange={changeInput} />
-                                                            <div className='fle-fle-text_' >
 
-                                                                <div className='ico-fle-fle'>
+                                                            {
+                                                                errorImg2 ? (
+                                                                    <>
+                                                                        <div className='fle-fle-text_' >
 
-                                                                    <i style={{ color: '#686868', fontSize: '50px' }} class="bi bi-image-fill"></i>
-                                                                </div>
-                                                                <div className='ico-fle-fle'>
-                                                                    <span className='s-text__'> Drop your images here, <br /> or select   <span className='s-add__'> click to browse </span>  </span>
+                                                                            <div className='ico-fle-fle' >
 
-                                                                </div>
-                                                            </div>
+                                                                                <i style={{ color: 'red', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                            </div>
+                                                                            <div className='ico-fle-fle'>
+                                                                                <span className='s-text__' style={{ color: 'red' }}> Minimo de imagenes 3  </span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                ) : (
+                                                                    <>
+                                                                        <div className='fle-fle-text_' >
+
+                                                                            <div className='ico-fle-fle'>
+
+                                                                                <i style={{ color: '#686868', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                            </div>
+                                                                            <div className='ico-fle-fle'>
+                                                                                <span className='s-text__'> Drop your images here, <br /> or select   <span className='s-add__'> click to browse </span>  </span>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </>
+                                                                )
+                                                            }
+
                                                         </div>
 
                                                     ) : (
@@ -505,27 +690,33 @@ function Addproducts(props) {
 
                                 </Row>
                                 <Row style={{ paddingTop: '30px' }}>
-                                    <Col lg={4} >
+                                    <Col lg={6} >
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
                                             <Form.Label>Price</Form.Label>
-                                            <Form.Control onChange={e => setFormValue({ ...formValue, price: e.target.value })} type="email" placeholder="$" />
-
+                                            <Form.Control value={formValue.price} onChange={e => setFormValue({ ...formValue, price: e.target.value })} type="email" placeholder="$" />
+                                            {
+                                                errorPrice === true && (
+                                                    <span className='errorMesage'> Debes ingresar un precio </span>
+                                                )
+                                            }
                                         </Form.Group>
+                                        <ToastN errorImg={errorImg} />
 
                                     </Col>
-                                    <Col lg={8} >
-
+                                    <Col lg={12} >
+                                        <Button className="mb-3" style={{ width: '100%', background: '#012970', borderColor: '#012970 ' }} onClick={sendData} type="submit">
+                                            Add products
+                                        </Button>
 
                                     </Col>
 
 
                                 </Row>
-                                <Col>
 
-                                    <Button onClick={sendData} variant="primary" type="submit">
-                                        Add products
-                                    </Button>
-                                </Col>
+                                <ModalLottie loding={loding} />
+
+
+
                             </div>
                         </Col>
                     </Row>
