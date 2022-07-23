@@ -18,6 +18,7 @@ import Addproducts from '../Componentes/Pages/DashBoard/PagesDashboard/Addproduc
 import UserDetailsProduct from '../Componentes/Pages/DashBoard/PagesDashboard/UserDetailsProduct';
 import DetailsProduct from '../Componentes/Landing/Productos/DetailsProduct';
 import AllProducts from '../Componentes/Landing/Productos/AllProducts';
+import Editproducts from '../Componentes/Pages/DashBoard/PagesDashboard/Editproducts';
 
 export const AppRouter = () => {
 
@@ -32,7 +33,7 @@ export const AppRouter = () => {
                     <Route path='/signIn' element={<SignIn />} />
                     <Route path='/signUp' element={<SignUp />} />
                     <Route path='/recuperatePassword' element={<RecuperatePassword />} />
-                    
+
 
                 </Route>
                 <Route element={<PrivateRoute />} >
@@ -40,6 +41,7 @@ export const AppRouter = () => {
                     <Route path='/products' element={<Products />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/addproduct' element={<Addproducts />} />
+                    <Route path='/editproducts' element={<Editproducts />} />
                     <Route path='/UserDetailsProduct' element={<UserDetailsProduct />} />
                 </Route>
                 <Route path='*' element={<Error404 />} />

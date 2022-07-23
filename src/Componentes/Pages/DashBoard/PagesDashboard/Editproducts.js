@@ -3,7 +3,7 @@ import DashFooter from '../DashFooter'
 import DashHeader from '../DashHeader'
 import DashSidebar from '../DashSidebar'
 import { Form, Button, Col, Row, InputGroup, FormControl } from 'react-bootstrap'
-import { Router, Link, useNavigate } from 'react-router-dom'
+import { Router, Link, useNavigate, useLocation } from 'react-router-dom'
 import { AiFillDelete } from "react-icons/ai";
 import '../../../../Style/dashboard.css'
 import { CloseButton } from 'react-bootstrap'
@@ -16,6 +16,7 @@ import { addProductsDb, uploadimgStorage } from '../../../../Controllers/addProd
 import ModalLottie from '../../../Modals/ModalLottie'
 import ToastN from '../../../Modals/Toast/ToastN'
 import { addDoc, collection, doc, getDoc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
+import { getDocumentId } from '../../../../Controllers/getOneDoc'
 let imagenes = {
     img1: 'https://www.hisense.es/wp-content/uploads/2019/06/H30-ICE-BLUE-2.jpg',
     img2: 'https://www.notebookcheck.org/fileadmin/_processed_/c/6/csm_4_zu_3_Teaser_Nokia_2.3_bdcb81c668.jpg',
@@ -30,9 +31,12 @@ const db = getFirestore(firebaseApp)
 const auth = getAuth(firebaseApp)
 
 
-function Addproducts(props) {
+function Editproducts(props) {
+
+    const params = useLocation()
     const navigate = useNavigate()
     const [isOpenDasboard, setIsOpenDasboard] = useState(false)
+    const [dataParams, setDataParams] = useState({})
     const open = () => {
         setIsOpenDasboard(!isOpenDasboard)
     }
@@ -40,6 +44,7 @@ function Addproducts(props) {
     const [imags, setImags] = useState([])
     const [sendUrl, setSendUrl] = useState([])
     const [loding, setLoding] = useState(null)
+
 
     const [formValue, setFormValue] = useState({
         name: '',
@@ -142,6 +147,22 @@ function Addproducts(props) {
         return isValid
     }
 
+    const getDocumenteEdit = async () => {
+        setLoding(true)
+
+        const result = await getDocumentId(params.state)
+        if (result.statusRespon) {
+            setDataParams(result.documentId)
+        } else {
+            setDataParams({})
+            alert(result.error)
+        }
+
+        setLoding(false)
+
+
+    }
+
 
     const sendData = async () => {
         setErrorCategpry('')
@@ -151,7 +172,7 @@ function Addproducts(props) {
         setErrorDescription('')
         if (!validateImg()) { return }
         setLoding(true)
-        await Promise.all(
+        /* await Promise.all(
             imags.map(async (img) => {
                 const { file } = img
                 const respuetaStorage = await uploadimgStorage(file)
@@ -160,15 +181,15 @@ function Addproducts(props) {
                 }
             })
         )
-        setSendUrl(sendUrl)
+        setSendUrl(sendUrl) */
         try {
-            await addDoc(collection(db, 'Products'), {
+            await updateDoc(doc(db, 'Products', params.state), {
                 name: formValue.name,
                 category: formValue.category,
                 descriptions: formValue.descriptions,
                 brand: formValue.brand,
                 price: formValue.price,
-                imgs: sendUrl
+                /*  imgs: sendUrl */
             })
         } catch (error) {
             console.log('error al agregar la coleciion producto', error)
@@ -221,9 +242,16 @@ function Addproducts(props) {
 
     }, [formValue.category, formValue.brand, formValue.price, formValue.descriptions, formValue.name])
 
+
     useEffect(() => {
-        console.log('aquiiii', imags)
-    }, [imags])
+
+        getDocumenteEdit()
+
+        console.log('--.--', dataParams)
+
+
+
+    }, [])
 
 
     return (
@@ -232,14 +260,26 @@ function Addproducts(props) {
                 <DashHeader open={open} />
                 <DashSidebar isOpenDasboard={isOpenDasboard} setIsOpenDasboard={setIsOpenDasboard} />
                 <main id="main" className="main" style={{ height: '100vh' }}>
-                    <h4>New product  </h4>
+                    <h4>Edit Product  </h4>
+
+
+
                     <Row>
                         <Col lg={5} >
                             <div>
                                 <Form>
                                     <Form.Group className="mb-2" controlId="formBasicEmail">
                                         <Form.Label>Name Product</Form.Label>
-                                        <Form.Control onChange={e => setFormValue({ ...formValue, name: e.target.value })} type="text" value={formValue.name} placeholder="Samsung Galaxy S20 Ultra...." />
+
+
+                                        <Form.Control
+
+
+                                            onChange={e => setFormValue({ ...formValue, name: e.target.value })}
+                                            type="text"
+                                            value={formValue.name || dataParams?.descriptions}
+                                            placeholder="Samsung Galaxy S20 Ultra...."
+                                        />
                                         <Form.Text className="text-muted">
                                             No exceda los 20 caracteres al ingresar el nombre del producto
                                         </Form.Text>
@@ -254,7 +294,9 @@ function Addproducts(props) {
                                         <Col>
                                             <Form.Group className="mb-2" controlId="formBasicPassword">
                                                 <Form.Label>Category</Form.Label>
-                                                <Form.Select size="sm" value={formValue.category} onChange={e => setFormValue({ ...formValue, category: e.target.value })} >
+                                                <Form.Select
+
+                                                    size="sm" value={formValue.category || dataParams?.category} onChange={e => setFormValue({ ...formValue, category: e.target.value })} >
                                                     <option>Select</option>
                                                     <option>Smartphone</option>
                                                     <option>Tablet</option>
@@ -274,7 +316,9 @@ function Addproducts(props) {
                                         <Col>
                                             <Form.Group className="mb-2" controlId="formBasicPassword">
                                                 <Form.Label>Brand</Form.Label>
-                                                <Form.Select size="sm" value={formValue.brand} onChange={e => setFormValue({ ...formValue, brand: e.target.value })} >
+                                                <Form.Select
+
+                                                    size="sm" value={formValue.brand || dataParams?.brand} onChange={e => setFormValue({ ...formValue, brand: e.target.value })} >
                                                     <option>Select</option>
                                                     <option>Samsung</option>
                                                     <option>Apple</option>
@@ -296,7 +340,7 @@ function Addproducts(props) {
                                     <Form.Group >
                                         <Form.Label>Descriptions</Form.Label>
                                         <FormControl
-                                            value={formValue.descriptions}
+                                            value={formValue.descriptions || dataParams.descriptions}
                                             onChange={e => setFormValue({ ...formValue, descriptions: e.target.value })}
                                             style={{ height: '150px' }}
                                             as="textarea"
@@ -327,45 +371,51 @@ function Addproducts(props) {
 
                                                 {
                                                     !imags[0] ? (
-                                                        <div
 
-                                                            className={`${errorImg ? 'd-ico-text-flex_errorImg ' : 'd-ico-text-flex'}  `}>
-                                                            <input className='input_type_file' type='file' onChange={changeInput} />
+                                                        <>
+
+                                                            <div
+                                                                className={`${errorImg ? 'd-ico-text-flex_errorImg ' : 'd-ico-text-flex'}  `}>
+                                                                <input className='input_type_file' type='file' onChange={changeInput} />
 
 
-                                                            {
-                                                                errorImg ? (
-                                                                    <>
-                                                                        <div className='fle-fle-text_' >
+                                                                {
+                                                                    errorImg ? (
+                                                                        <>
+                                                                            <div className='fle-fle-text_' >
 
-                                                                            <div className='ico-fle-fle' >
+                                                                                <div className='ico-fle-fle' >
 
-                                                                                <i style={{ color: 'red', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                                    <i style={{ color: 'red', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                                </div>
+                                                                                <div className='ico-fle-fle'>
+                                                                                    <span className='s-text__' style={{ color: 'red' }}> Ingrese Una Imagen  </span>
+
+                                                                                </div>
                                                                             </div>
-                                                                            <div className='ico-fle-fle'>
-                                                                                <span className='s-text__' style={{ color: 'red' }}> Ingrese Una Imagen  </span>
+                                                                        </>
+                                                                    ) : (
+                                                                        <>
+                                                                            <div className='fle-fle-text_' >
 
+                                                                                <div className='ico-fle-fle'>
+
+                                                                                    <i style={{ color: '#686868', fontSize: '50px' }} class="bi bi-image-fill"></i>
+                                                                                </div>
+                                                                                <div className='ico-fle-fle'>
+                                                                                    <span className='s-text__'> Drop your images here, <br /> or select   <span className='s-add__'> click to browse </span>  </span>
+
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                    </>
-                                                                ) : (
-                                                                    <>
-                                                                        <div className='fle-fle-text_' >
+                                                                        </>
+                                                                    )
+                                                                }
 
-                                                                            <div className='ico-fle-fle'>
+                                                            </div>
+                                                        </>
 
-                                                                                <i style={{ color: '#686868', fontSize: '50px' }} class="bi bi-image-fill"></i>
-                                                                            </div>
-                                                                            <div className='ico-fle-fle'>
-                                                                                <span className='s-text__'> Drop your images here, <br /> or select   <span className='s-add__'> click to browse </span>  </span>
 
-                                                                            </div>
-                                                                        </div>
-                                                                    </>
-                                                                )
-                                                            }
 
-                                                        </div>
 
                                                     ) : (
                                                         <>
@@ -390,6 +440,8 @@ function Addproducts(props) {
 
                                             </Col>
                                             <Col lg={4}>
+
+
                                                 {
                                                     !imags[1] ? (
                                                         <div className={`${errorImg2 ? 'd-ico-text-flex_errorImg ' : 'd-ico-text-flex'}  `}>
@@ -699,7 +751,7 @@ function Addproducts(props) {
                                     <Col lg={6} >
                                         <Form.Group className="mb-3" controlId="formBasicEmail">
                                             <Form.Label>Price</Form.Label>
-                                            <Form.Control value={formValue.price} onChange={e => setFormValue({ ...formValue, price: e.target.value })} type="email" placeholder="$" />
+                                            <Form.Control value={formValue.price || dataParams.price} onChange={e => setFormValue({ ...formValue, price: e.target.value })} type="email" placeholder="$" />
                                             {
                                                 errorPrice === true && (
                                                     <span className='errorMesage'> Debes ingresar un precio </span>
@@ -711,7 +763,7 @@ function Addproducts(props) {
                                     </Col>
                                     <Col lg={12} >
                                         <Button className="mb-3" style={{ width: '100%', background: '#012970', borderColor: '#012970 ' }} onClick={sendData} type="submit">
-                                            Add products
+                                            Update products
                                         </Button>
 
                                     </Col>
@@ -735,4 +787,4 @@ function Addproducts(props) {
     )
 }
 
-export default Addproducts
+export default Editproducts

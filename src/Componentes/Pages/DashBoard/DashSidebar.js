@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import  AOS  from 'aos'
+import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { StateContext } from '../../../Context/UseContextGlobal'
@@ -11,7 +11,7 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
 
     const { signUp } = useContext(StateContext)
     const navigate = useNavigate()
-    
+
 
     const [isOpenLink, setIsOpenLink] = useState(false)
     const [isOpenLink2, setIsOpenLink2] = useState(false)
@@ -33,56 +33,47 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
         signUp()
         navigate('/')
     }
-
-    
     useEffect(() => {
         AOS.init({
-           
             duration: 1000,
             easing: 'ease',
-            once:false
+            once: false
         });
-
-        
     })
 
     return (
 
         <>
             <aside id="sidebar" className='sidebar'>
-
                 <ul className="sidebar-nav" id="sidebar-nav" data-aos="fade-right">
 
-                    <li className="nav-item" data-aos="fade-right"   data-aos-duration="700" >
+                    <li className="nav-item" data-aos="fade-right" data-aos-duration="700" >
                         <Link to='/dashBoardMain' className="nav-link ">
                             <i className="bi bi-grid"></i>
                             <span>Home</span>
                         </Link>
                     </li>
-
-                    
-
-                    <li className="nav-item" data-aos="fade-right"   data-aos-duration="1300" >
+                    <li className="nav-item" data-aos="fade-right" data-aos-duration="1300" >
                         <NavLink style={{ textDecoration: 'none' }} className={({ isActive }) => [(isActive ? 'nav-link2  collapsed' : ' nav-link collapsed ')]} to={'/addproduct'}>
                             <i className="bi bi-dash-circle"></i>
                             <span>Add Productos</span>
                         </NavLink>
                     </li>
 
-                    <li className="nav-item" data-aos="fade-right"   data-aos-duration="1300" >
+                    <li className="nav-item" data-aos="fade-right" data-aos-duration="1300" >
                         <NavLink style={{ textDecoration: 'none' }} className={({ isActive }) => [(isActive ? 'nav-link2  collapsed' : ' nav-link collapsed ')]} to={'/products'}>
                             <i className="bi bi-question-circle"></i>
                             <span>Productos</span>
                         </NavLink>
                     </li>
 
-                    <li className="nav-item" data-aos="fade-right"   data-aos-duration="1600" >
+                    <li className="nav-item" data-aos="fade-right" data-aos-duration="1600" >
                         <NavLink style={{ textDecoration: 'none' }} className={({ isActive }) => [(isActive ? 'nav-link2  collapsed' : ' nav-link collapsed ')]} to={'/profile'}>
                             <i className="bi bi-person"></i>
                             <span>Profile</span>
                         </NavLink>
                     </li>
-               
+
 
                     {/* 
                     <li onClick={linkOpen} className="nav-item">
@@ -208,9 +199,9 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
 
                     <li className="nav-heading">Pages</li> */}
 
-                   
 
-{/* 
+
+                    {/* 
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="pages-contact.html">
                             <i className="bi bi-envelope"></i>
@@ -218,7 +209,7 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
                         </a>
                     </li>
  */}
-                  {/*   <li className="nav-item">
+                    {/*   <li className="nav-item">
                         <a className="nav-link collapsed" href="pages-register.html">
                             <i className="bi bi-card-list"></i>
                             <span>Register</span>
@@ -232,7 +223,7 @@ const DashSidebar = ({ isOpenDasboard, setIsOpenDasboard }) => {
                       </a> 
                     </li> */}
 
-{/* 
+                    {/* 
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="pages-blank.html">
                             <i className="bi bi-file-earmark"></i>

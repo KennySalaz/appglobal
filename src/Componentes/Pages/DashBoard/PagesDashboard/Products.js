@@ -12,6 +12,7 @@ import AOS from 'aos';
 
 
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { getProducts } from '../../../../Controllers/getProducts'
 
 
 
@@ -20,6 +21,7 @@ function Products(props) {
 
 
     const [isOpenDasboard, setIsOpenDasboard] = useState(false)
+    const [productsData, setProductsData] = useState([])
     const navigate = useNavigate()
 
     const open = () => {
@@ -37,8 +39,8 @@ function Products(props) {
         img8: 'https://www.corsair.com/medias/sys_master/images/images/hc7/h90/9054936465438/-CC-9011135-WW-Gallery-280X-RGB-BLK-01.png',
     }
 
-    const statusProduct = () => {
-        navigate('/UserDetailsProduct')
+    const statusProduct = (id) => {
+        navigate('/UserDetailsProduct', { state: id })
     }
 
     useEffect(() => {
@@ -48,6 +50,24 @@ function Products(props) {
             easing: 'ease'
         });
     })
+
+    const traerroducts = async () => {
+
+
+        const result = await getProducts()
+        if (result.statusRespond) {
+            setProductsData(result.products)
+            console.log('ver si trajoooo', productsData)
+        } else {
+            alert(result.error)
+        }
+
+    }
+
+    useEffect(() => {
+        traerroducts()
+    }, [])
+
     return (
         <>
             <div className={`${(isOpenDasboard && 'toggle-sidebar')}`} >
@@ -56,24 +76,35 @@ function Products(props) {
 
                 <main id="main" className="main" style={{ height: '100vh' }}>
                     <h4> Productos </h4>
-
                     <Row>
-                        <Col>
-                            <Card data-aos="fade-right" data-aos-duration="1000" >
-                                <div className='dFlex_100'>
-
-                                    <img className='maxImgWidth' src={products.img} />
 
 
-                                </div>
 
-                                <Card.Footer className="text-muted">
-                                    <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
-                                </Card.Footer>
-                            </Card>
-                        </Col>
-                        <Col>
+                        {
+                            productsData.map((data) => (
+                                <>
+
+                                    <Col>
+                                        <Card data-aos="fade-right" data-aos-duration="1000" >
+                                            <div className='dFlex_100'>
+                                                <img className='maxImgWidth' src={data.imgs[0]} />
+                                            </div>
+
+                                            <Card.Footer className="text-muted">
+                                                <Card.Title> {data.name} </Card.Title>
+                                                <Button onClick={() => statusProduct(data.id)} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                            </Card.Footer>
+                                        </Card>
+                                    </Col>
+
+                                </>
+
+                            ))
+                        }
+
+                    </Row>
+
+                    {/*                         <Col>
                             <Card data-aos="fade-right" data-aos-duration="2000" >
                                 <div className='dFlex_100'>
 
@@ -84,7 +115,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -98,11 +129,11 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
-                        </Col>
-                        <Col>
+                        </Col> */}
+                    {/* <Col>
                             <Card data-aos="fade-right" data-aos-duration="1000" >
                                 <div className='dFlex_100'>
 
@@ -112,7 +143,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -126,7 +157,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -140,7 +171,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -154,7 +185,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -168,7 +199,7 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
                         </Col>
@@ -181,12 +212,12 @@ function Products(props) {
                                 </div>
                                 <Card.Footer className="text-muted">
                                     <Card.Title>Card Title</Card.Title>
-                                    <Button onClick={statusProduct}  style={{ width: '100%' }} variant="primary">Editar Producto</Button>
+                                    <Button onClick={statusProduct} style={{ width: '100%' }} variant="primary">Editar Producto</Button>
                                 </Card.Footer>
                             </Card>
-                        </Col>
+                        </Col> */}
 
-                    </Row>
+
 
                     <DashFooter />
                 </main>
